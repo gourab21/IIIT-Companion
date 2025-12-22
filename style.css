@@ -1,0 +1,218 @@
+/* ---  1. Theming and Variables --- */
+:root {
+    /* Light Theme */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #1c1e21;
+    --text-secondary-color: #606770;
+    --primary-color: #1877f2;
+    --accent-color: #31a24c;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --nav-bg: #ffffff;
+
+    /* Font */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Theme */
+        --bg-color: #18191a;
+        --card-bg: #242526;
+        --text-color: #e4e6eb;
+        --text-secondary-color: #b0b3b8;
+        --primary-color: #2d88ff;
+        --accent-color: #45bd62;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --nav-bg: #242526;
+    }
+}
+
+
+/* --- 2. General Body and Typography --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding-bottom: 80px; /* Space for bottom nav if we had one */
+}
+
+h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+}
+
+p {
+    color: var(--text-secondary-color);
+    font-size: 1rem;
+}
+
+
+/* --- 3. Header --- */
+header {
+    padding: 24px 20px;
+    text-align: center;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+#current-day {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+#current-date {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+}
+
+
+/* --- 4. Sticky Navigation --- */
+.navbar {
+    display: flex;
+    overflow-x: auto;
+    padding: 12px 10px;
+    background: var(--nav-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    scrollbar-width: none; /* Firefox */
+}
+.navbar::-webkit-scrollbar { display: none; } /* Chrome, Safari */
+
+.nav-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary-color);
+    padding: 10px 20px;
+    border-radius: 18px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+/* --- 5. Main Content and Sections --- */
+main {
+    padding: 0 10px;
+}
+
+.section {
+    display: none;
+    padding-top: 20px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.section.active-section {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- 6. Card Design --- */
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+.card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Specific card content styling */
+#home-breakfast, #home-lunch, #home-snacks, #home-dinner {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+#home-next-bus {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Highlighted bus card */
+.card.highlight {
+    background: linear-gradient(135deg, var(--primary-color), #589bff);
+}
+.card.highlight h3, .card.highlight p {
+    color: #fff;
+}
+
+
+/* --- 7. Detailed Menu & Bus Lists --- */
+.menu-item, .bus-list li {
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.menu-item .day-label {
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+.menu-item small {
+    color: var(--text-secondary-color);
+}
+
+.bus-list {
+    list-style: none;
+}
+
+/* --- 8. Calendar Card --- */
+.calendar-event {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.calendar-event:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.calendar-event strong {
+    color: var(--text-color);
+}
+
+.calendar-event small {
+    color: var(--text-secondary-color);
+}
