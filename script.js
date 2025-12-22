@@ -229,10 +229,21 @@ function showSection(sectionId) {
 }
 
 // --- CALENDAR ---
+// --- CALENDAR ---
 async function loadCalendarData() {
+    // 1. Your Private Calendar URL
     const rawCalendarUrl = "https://calendar.google.com/calendar/ical/gourabdas2128%40gmail.com/private-17bc218e49cf1837918748bd4eb7282c/basic.ics";
+    
+    // 2. The Proxy URL
     const proxyUrl = "https://api.allorigins.win/raw?url=";
-    const calendarUrl = proxyUrl + encodeURIComponent(rawCalendarUrl);
+    
+    // 3. THE FIX: Generate a random number (timestamp)
+    const cacheBuster = new Date().getTime();
+
+    // 4. Append it to the URL. 
+    // This makes the URL look like: "...?url=...&t=1734967281"
+    // Because the number changes every millisecond, the browser NEVER uses the cache.
+    const calendarUrl = proxyUrl + encodeURIComponent(rawCalendarUrl) + "&t=" + cacheBuster;
 
     const calendarContainer = document.getElementById("calendar-events");
     calendarContainer.innerHTML = "<em>Loading...</em>";
