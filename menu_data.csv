@@ -1,29 +1,29 @@
-Day,Main,Sides,Extra,Type
-Monday,Uppma & Sheera / Vermicelli Upma,"Green Chutney, Boiled Peanuts",Coffee / Tea / Bournvita,Breakfast
-Tuesday,Poha,"Sev / Namkin Tari, Boiled Sweet Corn",Coffee / Tea / Bournvita,Breakfast
-Wednesday,Methi Paratha / Palak Paratha,"Veg Korma, Matki Sprouts, Egg Bhurji",Coffee / Tea / Bournvita,Breakfast
-Thursday,Idli Wada,"Sambar / Chutney, Chana Sprouts, Boiled Egg",Coffee / Tea / Bournvita,Breakfast
-Friday,Poori,"Aloo Sabji, Green Moong Sprouts",Coffee / Tea / Bournvita,Breakfast
-Saturday,Masala Dosa / Uttapam,"Sambar / Chutney, Matki Sprouts, Egg Bhurji",Coffee / Tea / Bournvita,Breakfast
-Sunday,Aloo Gobi Paratha,"Curd / Pickle, Green Moong Sprouts",Coffee / Tea / Bournvita,Breakfast
-Monday,"Onion Rice, Plain Rice","Dal Tadka, Rasam, Jeera Aloo, Dal Panchratna","Jaljeera, Curd, Salad, Papad",Lunch
-Tuesday,"Fried Rice / Bagara Rice, Plain Rice","Dal Fry, Sambhar, Tondli Chana Dry, Manchurian Gravy","Rasna, Curd, Salad, Papad",Lunch
-Wednesday,"Curd Rice, Plain Rice","Dal Methi, Rasam, Aloo Brinjal Tomato, Paneer Kolhapuri","Butter Milk, Salad, Papad",Lunch
-Thursday,"Puliogre, Plain Rice","Dal Fry, Sambhar, Black Chana Masala, Soyabean Sabji","Lassi, Curd, Salad, Papad",Lunch
-Friday,"Veg Biryani, Plain Rice","Mix Veg Raitha, Aloo Gobi Dry, Chhole Masala","Lemon Juice, Salad, Papad",Lunch
-Saturday,"Curd Rice, Plain Rice","Dal Palak, Mix Veg Dry, Egg Curry","Hot Badam Milk, Salad, Papad",Lunch
-Sunday,"Plain Rice, Tomato Rice","Paneer Butter Masala, Dal Palak","Kokam Sarbat, Salad, Papad",Lunch
-Monday,Samosa,Red & Green Chutney,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Tuesday,Bread Pakoda / Veg Sandwich,Green & Red Chutney,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Wednesday,Veg Hakka Noodles / Maggi,Tomato Sauce,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Thursday,Vada Pav,Green Chutney,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Friday,Pav Bhaji,Chopped Onion & Lemon,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Saturday,Masala Bhel,"Red/Green Chutney, Onion","Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Sunday,Veg Cutlet,Tomato Sauce / Green Chutney,"Milk/Fruits, BBJ, Tea/Coffee",Snacks
-Monday,Khichadi / Bisibele Bath,"Bhendi Sabzi, Paneer Hyderabadi, Dal Panchratna",Shevai Kheer,Dinner
-Tuesday,Plain Rice,"Veg Kadhai, Channa Dal",Ice Cream / Kulfi,Dinner
-Wednesday,Jeera Rice,"Aloo Sabji, Lauki Kofta Masala, Dal Makhani",Pineapple Sheera / Badusha,Dinner
-Thursday,Tomato Rice,"Aloo Sabji, Paneer Butter Masala, Dal Kolhapuri",Motichoor Ladoo,Dinner
-Friday,Onion Masala Rice,"Bhendi Sabzi, Rajma Masala, Dal Tadka",Gulab Jamun,Dinner
-Saturday,Plain Rice,"Aloo Beans Fry, Mushroom Masala, Moong Dal",Ice Cream / Kulfi,Dinner
-Sunday,Moong Dal Halwa / Badam Poori (Special),Moong Dal Halwa / Badam Poori,Moong Dal Halwa / Badam Poori,Dinner
+Day,Main,Sides,Type
+Monday,Uppma & Sheera / Vermicelli Upma,"Green Chutney, Boiled Peanuts",Breakfast
+Tuesday,Poha,"Sev / Namkin Tari, Boiled Sweet Corn",Breakfast
+Wednesday,Methi Paratha / Palak Paratha,"Veg Korma, Matki Sprouts, Egg Bhurji",Breakfast
+Thursday,Idli Wada,"Sambar / Chutney, Chana Sprouts, Boiled Egg",Breakfast
+Friday,Poori,"Aloo Sabji, Green Moong Sprouts",Breakfast
+Saturday,Masala Dosa / Uttapam,"Sambar / Chutney, Matki Sprouts, Egg Bhurji",Breakfast
+Sunday,Aloo Gobi Paratha,"Curd / Pickle, Green Moong Sprouts",Breakfast
+Monday,"Onion Rice, Plain Rice","Dal Tadka, Rasam, Jeera Aloo",Lunch
+Tuesday,Fried Rice / Bagara Rice,"Dal Fry, Sambhar, Manchurian",Lunch
+Wednesday,Curd Rice,"Dal Methi, Rasam, Paneer Kolhapuri",Lunch
+Thursday,Puliogre,"Dal Fry, Sambhar, Soyabean Sabji",Lunch
+Friday,Veg Biryani,"Mix Veg Raitha, Chhole",Lunch
+Saturday,Curd Rice,"Dal Palak, Egg Curry",Lunch
+Sunday,Paneer Butter Masala,Paneer Butter Masala,Lunch
+Monday,Samosa,Red & Green Chutney,Snacks
+Tuesday,Bread Pakoda / Veg Sandwich,Green & Red Chutney,Snacks
+Wednesday,Veg Noodles / Maggi,Tomato Sauce,Snacks
+Thursday,Vada Pav,Green Chutney,Snacks
+Friday,Pav Bhaji,Onion & Lemon,Snacks
+Saturday,Masala Bhel,Red/Green Chutney,Snacks
+Sunday,Veg Cutlet,Tomato Sauce,Snacks
+Monday,Khichadi / Bisibele Bath,"Paneer Hyderabadi, Dal Panchratna",Dinner
+Tuesday,Plain Rice,"Veg Kadhai, Channa Dal",Dinner
+Wednesday,Jeera Rice,"Lauki Kofta, Dal Makhani",Dinner
+Thursday,Tomato Rice,Paneer Butter Masala,Dinner
+Friday,Onion Masala Rice,Rajma Masala,Dinner
+Saturday,Plain Rice,Mushroom Masala,Dinner
+Sunday,Moong Dal Halwa (Special),Moong Dal Halwa,Dinner

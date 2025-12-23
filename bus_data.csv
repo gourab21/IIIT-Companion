@@ -1,26 +1,17 @@
 Time,Pickup,Drop,BusName
-7:30am,Campus,Transit hostel,Institute Bus 1
-7:30am,Campus,Transit hostel,Institute Bus 2
-8:00am,Transit hostel,Campus,Institute Bus 1
-8:00am,Transit hostel,Campus,Institute Bus 2
-8:25am,Campus,Transit hostel,Institute Bus 1
-8:45am,Transit hostel,Campus,Institute Bus 1
-10:00am,Campus,Transit hostel,Institute Bus 2
-10:40am,Transit hostel,Campus,Institute Bus 2
-11:20am,Campus,Transit hostel,Institute Bus 2
-12:00pm,Transit hostel,Campus,Institute Bus 2
-2:00pm,Campus,Transit hostel,Institute Bus 2
-2:40pm,Transit hostel,Campus,Institute Bus 2
-3:20pm,Campus,Transit hostel,Institute Bus 2
-4:00pm,Transit hostel,Campus,Institute Bus 2
-5:30pm,Campus,Transit hostel,Institute Bus 2
-5:30pm,Campus,Transit hostel,Institute Bus 1
-6:20pm,Transit hostel,Campus,Institute Bus 1
-7:00pm,Campus,Transit hostel,Institute Bus 1
-7:40pm,Transit hostel,Campus,Institute Bus 1
-8:20pm,Campus,Transit hostel,Institute Bus 1
-9:00pm,Transit hostel,Campus,Institute Bus 1
-10:00pm,Campus,Transit hostel,Institute Bus 1
-10:30pm,Transit hostel,Campus,Institute Bus 1
-11:15pm,Campus,Transit hostel,Institute Bus 1
-11:40pm,Transit hostel,Campus,Institute Bus 1
+7:30am,Campus,Transit hostel,Institute Bus
+8:00am,Transit hostel,Campus,Institute Bus
+8:25am,Campus,Transit hostel,Institute Bus
+8:45am,Transit hostel,Campus,Institute Bus
+10:00am,Campus,Transit hostel,Institute Bus
+11:20am,Campus,Transit hostel,Institute Bus
+12:00pm,Transit hostel,Campus,Institute Bus
+2:00pm,Campus,Transit hostel,Institute Bus
+3:20pm,Campus,Transit hostel,Institute Bus
+4:00pm,Transit hostel,Campus,Institute Bus
+5:30pm,Campus,Transit hostel,Institute Bus
+6:20pm,Transit hostel,Campus,Institute Bus
+7:40pm,Transit hostel,Campus,Institute Bus
+9:00pm,Campus,Transit hostel,Institute Bus
+10:30pm,Transit hostel,Campus,Institute Bus
+11:40pm,Campus,Transit hostel,Institute Bus
