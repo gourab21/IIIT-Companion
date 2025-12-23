@@ -6,7 +6,7 @@ import os
 
 # --- CONFIGURATION ---
 # 🔴 PASTE YOUR SECRET GOOGLE CALENDAR LINK BELOW 🔴
-ICAL_URL = "https://calendar.google.com/calendar/ical/YOUR_SECRET_ADDRESS/basic.ics"
+ICAL_URL = "https://calendar.google.com/calendar/ical/gourabdas2128%40gmail.com/private-17bc218e49cf1837918748bd4eb7282c/basic.ics"
 
 # --- 1. STATIC DATA (Menu & Bus) ---
 breakfast_data = {
