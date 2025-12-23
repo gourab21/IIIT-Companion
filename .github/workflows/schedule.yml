@@ -2,8 +2,8 @@ name: Update Schedule & Menu
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Runs every 30 minutes
-  workflow_dispatch:        # Allows manual run button
+- cron: '59 * * * *'  # Runs at the 59th minute of every hour
+  workflow_dispatch:      # Allows manual run button
 
 permissions:
   contents: write
