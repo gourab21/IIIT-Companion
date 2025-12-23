@@ -1,78 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus App</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-    <header>
-        <div id="current-day">Loading...</div>
-        <div id="current-date">Loading...</div>
-    </header>
+<header>
+    <div id="current-day">Loading…</div>
+    <div id="current-date">Loading…</div>
+</header>
 
-    <nav class="navbar">
-        <button class="nav-btn active" onclick="showSection('home')">Home</button>
-        <button class="nav-btn" onclick="showSection('Breakfast')">Breakfast</button>
-        <button class="nav-btn" onclick="showSection('Lunch')">Lunch</button>
-        <button class="nav-btn" onclick="showSection('Snacks')">Snacks</button>
-        <button class="nav-btn" onclick="showSection('Dinner')">Dinner</button>
-        <button class="nav-btn" onclick="showSection('bus')">Bus</button>
-    </nav>
+<nav class="navbar">
+    <button class="nav-btn active">Home</button>
+</nav>
 
-    <main id="content">
-        <div id="home" class="section active-section">
-            <div class="card">
-                <h3>Today's Schedule 🗓️</h3>
-                <div id="calendar-events"></div>
-            </div>
-            <div class="card highlight">
-                <h3>Next Bus 🚌</h3>
-                <p id="home-next-bus">Loading...</p>
-            </div>
-            
-            <div class="card">
-                <h3>Today's Breakfast 🍳</h3>
-                <p id="home-breakfast">Loading...</p>
-            </div>
-            <div class="card">
-                <h3>Today's Lunch 🍛</h3>
-                <p id="home-lunch">Loading...</p>
-            </div>
-            <div class="card">
-                <h3>Today's Snacks 🥪</h3>
-                <p id="home-snacks">Loading...</p>
-            </div>
-            <div class="card">
-                <h3>Today's Dinner 🍲</h3>
-                <p id="home-dinner">Loading...</p>
-            </div>
-        </div>
+<main id="content">
+    <div class="card">
+        <h3>Today's Schedule 🗓️</h3>
+        <div id="calendar-events">Loading…</div>
+    </div>
 
-        <div id="Breakfast" class="section"><h2>Breakfast Menu</h2><div id="list-Breakfast"></div></div>
-        <div id="Lunch" class="section"><h2>Lunch Menu</h2><div id="list-Lunch"></div></div>
-        <div id="Snacks" class="section"><h2>Snacks Menu</h2><div id="list-Snacks"></div></div>
-        <div id="Dinner" class="section"><h2>Dinner Menu</h2><div id="list-Dinner"></div></div>
+    <div class="card highlight">
+        <h3>Next Bus 🚌</h3>
+        <p id="home-next-bus">Loading…</p>
+    </div>
 
-        <div id="bus" class="section">
-            <h2>Bus Schedule</h2>
-            <div class="card">
-                <h3>Campus ⮕ Hostel</h3>
-                <ul id="bus-campus-hostel" class="bus-list"></ul>
-            </div>
-            <div class="card">
-                <h3>Hostel ⮕ Campus</h3>
-                <ul id="bus-hostel-campus" class="bus-list"></ul>
-            </div>
-        </div>
-    </main>
+    <div class="card">
+        <h3>Breakfast 🍳</h3>
+        <p id="home-breakfast"></p>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="card">
+        <h3>Lunch 🍛</h3>
+        <p id="home-lunch"></p>
+    </div>
+
+    <div class="card">
+        <h3>Snacks 🥪</h3>
+        <p id="home-snacks"></p>
+    </div>
+
+    <div class="card">
+        <h3>Dinner 🍲</h3>
+        <p id="home-dinner"></p>
+    </div>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
