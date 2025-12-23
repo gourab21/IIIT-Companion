@@ -2,7 +2,7 @@ name: Update Schedule & Menu
 
 on:
   schedule:
-- cron: '59 * * * *'  # Runs at the 59th minute of every hour
+    - cron: '59 * * * *'  # Runs at the 59th minute of every hour
   workflow_dispatch:      # Allows manual run button
 
 permissions:
