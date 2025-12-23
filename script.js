@@ -187,21 +187,46 @@ function showSection(id) {
 async function loadCalendarData() {
     const box = document.getElementById("calendar-events");
     box.innerHTML = "<em>Syncing...</em>";
+
     try {
         const res = await fetch(`./events_data.csv?t=${Date.now()}`);
         const events = parseCSV(await res.text());
-        const today = new Date().toISOString().split("T")[0];
-        const todayEvents = events.filter(e => e.Date === today);
-        box.innerHTML = todayEvents.length
-            ? todayEvents.map(e => `
+
+        const today = new Date();
+        const todayStr = today.toISOString().split("T")[0];
+
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split("T")[0];
+
+        const filtered = events.filter(e =>
+            e.Date === todayStr || e.Date === tomorrowStr
+        );
+
+        if (filtered.length === 0) {
+            box.innerHTML = "<em>No events today or tomorrow.</em>";
+            return;
+        }
+
+        box.innerHTML = filtered.map(e => {
+            const label =
+                e.Date === todayStr ? "Today" :
+                e.Date === tomorrowStr ? "Tomorrow" : "";
+
+            return `
                 <div class="calendar-event">
-                    <strong>${e.Event}</strong><br>
-                    <small>${e.Time}</small>
-                </div>`).join("")
-            : "<em>No events for today.</em>";
+                    <strong>${e.Event}</strong>
+                    <small style="display:block;opacity:0.7">
+                        ${label} • ${e.Time}
+                    </small>
+                </div>
+            `;
+        }).join("");
+
     } catch {
         box.innerHTML = "<small>Schedule unavailable</small>";
     }
 }
+
 
 init();
