@@ -1,13 +1,27 @@
+"""
+Campus App – Data Generator
+Runs via GitHub Actions every hour (cron @ 59)
+Generates ALL CSVs consumed by frontend
+"""
+
 import pandas as pd
 import requests
 from icalendar import Calendar
 from datetime import datetime, date
 import pytz
 
-# ================= CONFIG =================
-ICAL_URL = "https://calendar.google.com/calendar/ical/gourabdas2128%40gmail.com/private-17bc218e49cf1837918748bd4eb7282c/basic.ics"
+# ==========================================================
+# CONFIG
+# ==========================================================
+ICAL_URL = (
+    "https://calendar.google.com/calendar/ical/"
+    "gourabdas2128%40gmail.com/"
+    "private-17bc218e49cf1837918748bd4eb7282c/basic.ics"
+)
 
-# ================= MENU DATA =================
+# ==========================================================
+# MENU DATA
+# ==========================================================
 breakfast_data = {
     "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
     "Main": [
@@ -34,20 +48,20 @@ lunch_data = {
     "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
     "Main": [
         "Onion Rice, Plain Rice",
-        "Fried Rice / Bagara Rice",
-        "Curd Rice",
-        "Puliogre",
-        "Veg Biryani",
-        "Curd Rice",
-        "Paneer Butter Masala"
+        "Fried Rice / Bagara Rice, Plain Rice",
+        "Curd Rice, Plain Rice",
+        "Puliogre, Plain Rice",
+        "Veg Biryani, Plain Rice",
+        "Curd Rice, Plain Rice",
+        "Paneer Butter Masala (Main)"
     ],
     "Sides": [
-        "Dal Tadka, Rasam, Jeera Aloo",
-        "Dal Fry, Sambhar, Manchurian",
-        "Dal Methi, Rasam, Paneer Kolhapuri",
-        "Dal Fry, Sambhar, Soyabean Sabji",
-        "Mix Veg Raitha, Chhole",
-        "Dal Palak, Egg Curry",
+        "Dal Tadka, Rasam, Jeera Aloo, Dal Panchratna",
+        "Dal Fry, Sambhar, Tondli Chana Dry, Manchurian Gravy",
+        "Dal Methi, Rasam, Aloo Brinjal Tomato, Paneer Kolhapuri",
+        "Dal Fry, Sambhar, Black Chana Masala, Soyabean Sabji",
+        "Mix Veg Raitha, Aloo Gobi Dry, Chhole Masala",
+        "Dal Palak, Mix Veg Dry, Egg Curry",
         "Paneer Butter Masala"
     ]
 }
@@ -57,7 +71,7 @@ snacks_data = {
     "Main": [
         "Samosa",
         "Bread Pakoda / Veg Sandwich",
-        "Veg Noodles / Maggi",
+        "Veg Hakka Noodles / Maggi",
         "Vada Pav",
         "Pav Bhaji",
         "Masala Bhel",
@@ -68,9 +82,9 @@ snacks_data = {
         "Green & Red Chutney",
         "Tomato Sauce",
         "Green Chutney",
-        "Onion & Lemon",
-        "Red/Green Chutney",
-        "Tomato Sauce"
+        "Chopped Onion & Lemon",
+        "Red/Green Chutney, Onion",
+        "Tomato Sauce / Green Chutney"
     ]
 }
 
@@ -83,45 +97,68 @@ dinner_data = {
         "Tomato Rice",
         "Onion Masala Rice",
         "Plain Rice",
-        "Moong Dal Halwa (Special)"
+        "Moong Dal Halwa / Badam Poori (Special)"
     ],
     "Sides": [
-        "Paneer Hyderabadi, Dal Panchratna",
+        "Bhendi Sabzi, Paneer Hyderabadi, Dal Panchratna",
         "Veg Kadhai, Channa Dal",
-        "Lauki Kofta, Dal Makhani",
-        "Paneer Butter Masala",
-        "Rajma Masala",
-        "Mushroom Masala",
-        "Moong Dal Halwa"
+        "Aloo Sabji, Lauki Kofta Masala, Dal Makhani",
+        "Aloo Sabji, Paneer Butter Masala, Dal Kolhapuri",
+        "Bhendi Sabzi, Rajma Masala, Dal Tadka",
+        "Aloo Beans Fry, Mushroom Masala, Moong Dal",
+        "Moong Dal Halwa / Badam Poori"
     ]
 }
 
+# ==========================================================
+# BUS DATA
+# ==========================================================
 bus_data = {
     "Time": [
-        "7:30am","8:00am","8:25am","8:45am",
-        "10:00am","11:20am","12:00pm",
-        "2:00pm","3:20pm","4:00pm",
-        "5:30pm","6:20pm","7:40pm",
-        "9:00pm","10:30pm","11:40pm"
+        "7:30am","7:30am","8:00am","8:00am","8:25am","8:45am",
+        "10:00am","10:40am","11:20am","12:00pm","2:00pm",
+        "2:40pm","3:20pm","4:00pm","5:30pm","5:30pm",
+        "6:20pm","7:00pm","7:40pm","8:20pm","9:00pm",
+        "10:00pm","10:30pm","11:15pm","11:40pm"
     ],
     "Pickup": [
-        "Campus","Transit hostel","Campus","Transit hostel",
-        "Campus","Campus","Transit hostel",
-        "Campus","Campus","Transit hostel",
-        "Campus","Transit hostel","Transit hostel",
-        "Campus","Transit hostel","Campus"
+        "Campus","Campus","Transit hostel","Transit hostel","Campus","Transit hostel",
+        "Campus","Transit hostel","Campus","Transit hostel","Campus",
+        "Transit hostel","Campus","Transit hostel","Campus","Campus",
+        "Transit hostel","Campus","Transit hostel","Campus","Transit hostel",
+        "Campus","Transit hostel","Campus","Transit hostel"
     ],
     "Drop": [
-        "Transit hostel","Campus","Transit hostel","Campus",
-        "Transit hostel","Transit hostel","Campus",
-        "Transit hostel","Transit hostel","Campus",
-        "Transit hostel","Campus","Campus",
-        "Transit hostel","Campus","Transit hostel"
+        "Transit hostel","Transit hostel","Campus","Campus","Transit hostel","Campus",
+        "Transit hostel","Campus","Transit hostel","Campus","Transit hostel",
+        "Campus","Transit hostel","Campus","Transit hostel","Transit hostel",
+        "Campus","Transit hostel","Campus","Transit hostel","Campus",
+        "Transit hostel","Campus","Transit hostel","Campus"
     ],
-    "BusName": ["Institute Bus"] * 16
+    "BusName": [
+        "Institute Bus 1","Institute Bus 2","Institute Bus 1","Institute Bus 2",
+        "Institute Bus 1","Institute Bus 1","Institute Bus 2","Institute Bus 2",
+        "Institute Bus 2","Institute Bus 2","Institute Bus 2","Institute Bus 2",
+        "Institute Bus 2","Institute Bus 2","Institute Bus 2","Institute Bus 1",
+        "Institute Bus 1","Institute Bus 1","Institute Bus 1","Institute Bus 1",
+        "Institute Bus 1","Institute Bus 1","Institute Bus 1","Institute Bus 1",
+        "Institute Bus 1"
+    ]
 }
 
-# ================= CALENDAR =================
+# ==========================================================
+# MEAL TIMES (CRITICAL FOR HOME VISIBILITY)
+# ==========================================================
+meal_times_data = {
+    "Day": ["Default","Default","Default","Default"],
+    "Type": ["Breakfast","Lunch","Snacks","Dinner"],
+    "StartTime": ["07:00","12:30","16:30","19:30"],
+    "EndTime": ["09:30","14:30","17:30","21:30"]
+}
+
+# ==========================================================
+# CALENDAR FETCH
+# ==========================================================
 def get_calendar_events():
     events = []
     today = date.today()
@@ -161,20 +198,32 @@ def get_calendar_events():
 
     return pd.DataFrame(events)
 
-# ================= CSV OUTPUT =================
-def save_all():
+# ==========================================================
+# CSV GENERATION
+# ==========================================================
+def generate_csvs():
+    # Menu
     df_menu = pd.concat([
         pd.DataFrame(breakfast_data).assign(Type="Breakfast"),
         pd.DataFrame(lunch_data).assign(Type="Lunch"),
         pd.DataFrame(snacks_data).assign(Type="Snacks"),
         pd.DataFrame(dinner_data).assign(Type="Dinner")
-    ])
-
+    ], ignore_index=True)
     df_menu.to_csv("menu_data.csv", index=False)
+
+    # Bus
     pd.DataFrame(bus_data).to_csv("bus_data.csv", index=False)
+
+    # Meal times
+    pd.DataFrame(meal_times_data).to_csv("meal_times.csv", index=False)
+
+    # Calendar
     get_calendar_events().to_csv("events_data.csv", index=False)
 
-    print("✅ CSVs updated successfully")
+    print("✅ All CSVs generated successfully")
 
+# ==========================================================
+# ENTRY POINT
+# ==========================================================
 if __name__ == "__main__":
-    save_all()
+    generate_csvs()
