@@ -1,5 +1,5 @@
 """
-Campus App – Data Generator
+Campus App – Unified Data Generator
 Runs via GitHub Actions every hour (cron @ 59)
 Generates ALL CSVs consumed by frontend
 """
@@ -147,17 +147,29 @@ bus_data = {
 }
 
 # ==========================================================
-# MEAL TIMES (CRITICAL FOR HOME VISIBILITY)
+# MEAL TIMES (FINAL LOGIC)
 # ==========================================================
 meal_times_data = {
-    "Day": ["Default","Default","Default","Default"],
-    "Type": ["Breakfast","Lunch","Snacks","Dinner"],
-    "StartTime": ["07:00","12:30","16:30","19:30"],
-    "EndTime": ["09:30","14:30","17:30","21:30"]
+    "Day": [
+        "Default","Default","Default","Default",  # Normal days
+        "Sunday"                                 # Sunday / Govt holiday
+    ],
+    "Type": [
+        "Breakfast","Lunch","Snacks","Dinner",
+        "Breakfast"
+    ],
+    "StartTime": [
+        "07:45","12:30","16:30","19:30",
+        "08:00"
+    ],
+    "EndTime": [
+        "09:15","14:00","17:30","21:00",
+        "09:30"
+    ]
 }
 
 # ==========================================================
-# CALENDAR FETCH
+# CALENDAR
 # ==========================================================
 def get_calendar_events():
     events = []
@@ -188,7 +200,7 @@ def get_calendar_events():
                     "Event": summary
                 })
 
-    except Exception as e:
+    except Exception:
         events.append({
             "Date": today.strftime("%Y-%m-%d"),
             "Day": today.strftime("%A"),
@@ -202,28 +214,19 @@ def get_calendar_events():
 # CSV GENERATION
 # ==========================================================
 def generate_csvs():
-    # Menu
     df_menu = pd.concat([
         pd.DataFrame(breakfast_data).assign(Type="Breakfast"),
         pd.DataFrame(lunch_data).assign(Type="Lunch"),
         pd.DataFrame(snacks_data).assign(Type="Snacks"),
         pd.DataFrame(dinner_data).assign(Type="Dinner")
     ], ignore_index=True)
+
     df_menu.to_csv("menu_data.csv", index=False)
-
-    # Bus
     pd.DataFrame(bus_data).to_csv("bus_data.csv", index=False)
-
-    # Meal times
     pd.DataFrame(meal_times_data).to_csv("meal_times.csv", index=False)
-
-    # Calendar
     get_calendar_events().to_csv("events_data.csv", index=False)
 
     print("✅ All CSVs generated successfully")
 
-# ==========================================================
-# ENTRY POINT
-# ==========================================================
 if __name__ == "__main__":
     generate_csvs()

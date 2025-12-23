@@ -5,6 +5,8 @@ let mealTimes = [];
 const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
+/* ================= INIT ================= */
+
 function init() {
     updateDate();
     loadData();
@@ -20,7 +22,7 @@ function init() {
 
 async function loadData() {
     try {
-        const ts = Date.now(); // 🔥 cache buster
+        const ts = Date.now();
 
         const [menuRes, busRes, timeRes] = await Promise.all([
             fetch(`./menu_data.csv?t=${ts}`),
@@ -68,7 +70,7 @@ function updateDate() {
         `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
 }
 
-/* ================= HOME VISIBILITY LOGIC ================= */
+/* ================= HOME MEAL VISIBILITY ================= */
 
 function updateHome() {
     const now = new Date();
@@ -182,7 +184,7 @@ function showSection(id) {
         ?.classList.add("active");
 }
 
-/* ================= CALENDAR (ALREADY CACHE SAFE) ================= */
+/* ================= CALENDAR (TODAY + TOMORROW) ================= */
 
 async function loadCalendarData() {
     const box = document.getElementById("calendar-events");
@@ -194,7 +196,6 @@ async function loadCalendarData() {
 
         const today = new Date();
         const todayStr = today.toISOString().split("T")[0];
-
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
         const tomorrowStr = tomorrow.toISOString().split("T")[0];
@@ -227,6 +228,5 @@ async function loadCalendarData() {
         box.innerHTML = "<small>Schedule unavailable</small>";
     }
 }
-
 
 init();
