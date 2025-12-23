@@ -228,80 +228,45 @@ function showSection(sectionId) {
     if(activeBtn) activeBtn.classList.add('active');
 }
 
-// --- CALENDAR ---
-// --- CALENDAR ---
+// --- CALENDAR (CSV VERSION) ---
 async function loadCalendarData() {
-    // 1. Your Private Calendar URL
-    const rawCalendarUrl = "https://calendar.google.com/calendar/ical/gourabdas2128%40gmail.com/private-17bc218e49cf1837918748bd4eb7282c/basic.ics";
-    
-    // 2. The Proxy URL
-    const proxyUrl = "https://api.allorigins.win/raw?url=";
-    
-    // 3. THE FIX: Generate a random number (timestamp)
-    const cacheBuster = new Date().getTime();
-
-    // 4. Append it to the URL. 
-    // This makes the URL look like: "...?url=...&t=1734967281"
-    // Because the number changes every millisecond, the browser NEVER uses the cache.
-    const calendarUrl = proxyUrl + encodeURIComponent(rawCalendarUrl) + "&t=" + cacheBuster;
-
     const calendarContainer = document.getElementById("calendar-events");
-    calendarContainer.innerHTML = "<em>Loading...</em>";
+    calendarContainer.innerHTML = "<em>Syncing...</em>";
 
     try {
-        const res = await fetch(calendarUrl);
-        if (!res.ok) throw new Error(`Failed to fetch iCal feed. Status: ${res.status}`);
+        // Fetch the generated CSV. 
+        // We add '?t=' + timestamp to force the browser to ignore old cache
+        const response = await fetch(`./events_data.csv?t=${new Date().getTime()}`);
         
-        const data = await res.text();
-        
-        const jcalData = ICAL.parse(data);
-        const comp = new ICAL.Component(jcalData);
-        const allEvents = comp.getAllSubcomponents("vevent");
+        if (!response.ok) throw new Error("Events file not found");
 
+        const csvText = await response.text();
+        const events = parseCSV(csvText); // Uses your existing CSV parser
+
+        // Filter for TODAY only
         const now = new Date();
-        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
-        const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+        const todayStr = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
 
-        const todayEvents = allEvents.map(e => new ICAL.Event(e)).filter(evt => {
-            const start = evt.startDate.toJSDate();
-            const end = evt.endDate.toJSDate();
-            // Check for events that are active today
-            return (start <= todayEnd && end >= todayStart);
-        });
+        const todayEvents = events.filter(e => e.Date === todayStr);
 
         if (todayEvents.length === 0) {
-            calendarContainer.innerHTML = "<em>No events scheduled for today.</em>";
+            calendarContainer.innerHTML = "<em>No events for today.</em>";
             return;
         }
 
-        // Sort events by start time
-        todayEvents.sort((a, b) => a.startDate.toJSDate() - b.startDate.toJSDate());
-
-        calendarContainer.innerHTML = todayEvents.map(evt => {
-            const start = evt.startDate.toJSDate();
-            const end = evt.endDate.toJSDate();
-            
-            let timeString = '';
-            // Check if it's an all-day event
-            if (evt.startDate.isDate) {
-                 timeString = 'All Day';
-            } else {
-                 timeString = `${formatTime(start)} - ${formatTime(end)}`;
-            }
-
-            return `
-                <div class="calendar-event">
-                    <strong>${evt.summary}</strong><br>
-                    <small>${timeString}</small>
-                </div>
-            `;
-        }).join('');
+        calendarContainer.innerHTML = todayEvents.map(evt => `
+            <div class="calendar-event">
+                <strong>${evt.Event}</strong><br>
+                <small>${evt.Time}</small>
+            </div>
+        `).join('');
 
     } catch (err) {
         console.error("Calendar Error:", err);
-        calendarContainer.innerHTML = "<span style='color:red'>Could not load calendar. The CORS proxy may be down.</span>";
+        calendarContainer.innerHTML = "<small>Schedule unavailable</small>";
     }
 }
+
 
 function formatTime(date) {
     let hours = date.getHours();
