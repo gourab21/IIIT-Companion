@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus App</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
 </head>
 <body>
 
@@ -27,20 +28,31 @@
 
     <main id="content">
         <div id="home" class="section active-section">
-            <div class="card highlight">
-                <h3>📅 Today's Schedule</h3>
-                <div id="calendar-events">Loading events...</div>
-            </div>
-
             <div class="card">
-                <h3>🚌 Next Bus</h3>
-                <p id="home-next-bus">Calculating...</p>
+                <h3>Today's Schedule 🗓️</h3>
+                <div id="calendar-events"></div>
+            </div>
+            <div class="card highlight">
+                <h3>Next Bus 🚌</h3>
+                <p id="home-next-bus">Loading...</p>
             </div>
             
-            <div class="card"><h3>🍳 Breakfast</h3><p id="home-breakfast">Loading...</p></div>
-            <div class="card"><h3>🍛 Lunch</h3><p id="home-lunch">Loading...</p></div>
-            <div class="card"><h3>🥪 Snacks</h3><p id="home-snacks">Loading...</p></div>
-            <div class="card"><h3>🍲 Dinner</h3><p id="home-dinner">Loading...</p></div>
+            <div class="card">
+                <h3>Today's Breakfast 🍳</h3>
+                <p id="home-breakfast">Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Today's Lunch 🍛</h3>
+                <p id="home-lunch">Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Today's Snacks 🥪</h3>
+                <p id="home-snacks">Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Today's Dinner 🍲</h3>
+                <p id="home-dinner">Loading...</p>
+            </div>
         </div>
 
         <div id="Breakfast" class="section"><h2>Breakfast Menu</h2><div id="list-Breakfast"></div></div>

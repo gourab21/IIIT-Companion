@@ -5,7 +5,7 @@ from datetime import datetime, date
 import os
 
 # --- CONFIGURATION ---
-# ✅ YOUR ACTUAL SECRET LINK IS HERE
+# 🔴 PASTE YOUR SECRET GOOGLE CALENDAR LINK BELOW 🔴
 ICAL_URL = "https://calendar.google.com/calendar/ical/gourabdas2128%40gmail.com/private-17bc218e49cf1837918748bd4eb7282c/basic.ics"
 
 # --- 1. STATIC DATA (Menu & Bus) ---
@@ -60,15 +60,18 @@ def get_calendar_events():
                 summary = str(component.get('summary'))
                 start = component.get('dtstart').dt
                 
-                # Handle timezone awareness (some events are naive, some aware)
+                # Handle timezone awareness
                 if hasattr(start, 'date'):
+                    # It's a datetime
                     event_date = start.date()
+                    # Convert to simple string time for CSV
                     time_str = start.strftime("%I:%M %p")
                 else:
+                    # It's just a date (All day event)
                     event_date = start
                     time_str = "All Day"
                 
-                # Keep events from today onwards
+                # Keep events from today onwards (optional: keep history? let's stick to future/today)
                 if event_date >= today:
                     events_data.append({
                         "Date": event_date.strftime("%Y-%m-%d"),
@@ -82,8 +85,8 @@ def get_calendar_events():
         
     except Exception as e:
         print(f"⚠️ Error fetching calendar: {e}")
-        # Add dummy row to avoid CSV errors
-        events_data.append({"Date": datetime.now().strftime("%Y-%m-%d"), "Day": "Error", "Time": "--", "Event": "Sync Failed"})
+        # Create a dummy entry so the CSV isn't empty (prevents JS errors)
+        events_data.append({"Date": datetime.now().strftime("%Y-%m-%d"), "Day": "Error", "Time": "--", "Event": "Could not sync calendar"})
 
     return pd.DataFrame(events_data)
 
