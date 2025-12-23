@@ -5,8 +5,6 @@ let mealTimes = [];
 const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-/* ================= INIT ================= */
-
 function init() {
     updateDate();
     loadData();
@@ -18,14 +16,16 @@ function init() {
     }, 60000);
 }
 
-/* ================= LOAD CSVs ================= */
+/* ================= LOAD CSVs (CACHE SAFE) ================= */
 
 async function loadData() {
     try {
+        const ts = Date.now(); // 🔥 cache buster
+
         const [menuRes, busRes, timeRes] = await Promise.all([
-            fetch("./menu_data.csv"),
-            fetch("./bus_data.csv"),
-            fetch("./meal_times.csv")
+            fetch(`./menu_data.csv?t=${ts}`),
+            fetch(`./bus_data.csv?t=${ts}`),
+            fetch(`./meal_times.csv?t=${ts}`)
         ]);
 
         allMenus = parseCSV(await menuRes.text());
@@ -68,7 +68,7 @@ function updateDate() {
         `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
 }
 
-/* ================= HOME LOGIC (CRITICAL) ================= */
+/* ================= HOME VISIBILITY LOGIC ================= */
 
 function updateHome() {
     const now = new Date();
@@ -82,26 +82,20 @@ function updateHome() {
         if (!card) return;
 
         const meal = todayMenus.find(m => m.Type === type);
-
-        let timeInfo =
+        const timeInfo =
             mealTimes.find(t => t.Day === today && t.Type === type) ||
             mealTimes.find(t => t.Day === "Default" && t.Type === type);
 
-        // Hide if no meal or timing
         if (!meal || !timeInfo || !timeInfo.EndTime) {
             card.style.display = "none";
             return;
         }
 
-        const endTime = parse24HTime(timeInfo.EndTime);
-
-        // Hide if meal time is over
-        if (currentMins > endTime) {
+        if (currentMins > parse24HTime(timeInfo.EndTime)) {
             card.style.display = "none";
             return;
         }
 
-        // Otherwise show
         card.style.display = "block";
         document.getElementById(id).innerText =
             meal.Main + (meal.Sides ? " - " + meal.Sides : "");
@@ -112,12 +106,9 @@ function updateHome() {
     setMenu("Snacks","home-snacks");
     setMenu("Dinner","home-dinner");
 
-    const nextToHostel = getNextBus(currentMins,"Campus","Transit hostel");
-    const nextToCampus = getNextBus(currentMins,"Transit hostel","Campus");
-
     document.getElementById("home-next-bus").innerHTML = `
-        <strong>To Hostel:</strong> ${nextToHostel}<br>
-        <strong>To Campus:</strong> ${nextToCampus}
+        <strong>To Hostel:</strong> ${getNextBus(currentMins,"Campus","Transit hostel")}<br>
+        <strong>To Campus:</strong> ${getNextBus(currentMins,"Transit hostel","Campus")}
     `;
 }
 
@@ -130,9 +121,7 @@ function getNextBus(currentMins, from, to) {
             bus.Drop.toLowerCase().includes(to.toLowerCase())
         ) {
             const mins = parseTimeStr(bus.Time);
-            if (mins > currentMins) {
-                return `${bus.Time} (${bus.BusName})`;
-            }
+            if (mins > currentMins) return `${bus.Time} (${bus.BusName})`;
         }
     }
     return "No more buses today";
@@ -152,13 +141,12 @@ function parse24HTime(t) {
     return h*60+m;
 }
 
-/* ================= LIST RENDER ================= */
+/* ================= LISTS ================= */
 
 function renderAllMenus() {
     ["Breakfast","Lunch","Snacks","Dinner"].forEach(type => {
         const container = document.getElementById(`list-${type}`);
         container.innerHTML = "";
-
         allMenus.filter(m => m.Type === type).forEach(meal => {
             const div = document.createElement("div");
             div.className = "menu-item";
@@ -176,12 +164,10 @@ function renderBusLists() {
     const ch = document.getElementById("bus-campus-hostel");
     const hc = document.getElementById("bus-hostel-campus");
     ch.innerHTML = ""; hc.innerHTML = "";
-
     busSchedule.forEach(bus => {
         const li = document.createElement("li");
         li.innerText = `${bus.Time} - ${bus.BusName}`;
-        if (bus.Pickup.toLowerCase().includes("campus")) ch.appendChild(li);
-        else hc.appendChild(li);
+        bus.Pickup.toLowerCase().includes("campus") ? ch.appendChild(li) : hc.appendChild(li);
     });
 }
 
@@ -190,26 +176,22 @@ function renderBusLists() {
 function showSection(id) {
     document.querySelectorAll(".section").forEach(s => s.classList.remove("active-section"));
     document.getElementById(id).classList.add("active-section");
-
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
     [...document.querySelectorAll(".nav-btn")]
         .find(b => b.innerText.toLowerCase() === id.toLowerCase())
         ?.classList.add("active");
 }
 
-/* ================= CALENDAR ================= */
+/* ================= CALENDAR (ALREADY CACHE SAFE) ================= */
 
 async function loadCalendarData() {
     const box = document.getElementById("calendar-events");
     box.innerHTML = "<em>Syncing...</em>";
-
     try {
         const res = await fetch(`./events_data.csv?t=${Date.now()}`);
         const events = parseCSV(await res.text());
         const today = new Date().toISOString().split("T")[0];
-
         const todayEvents = events.filter(e => e.Date === today);
-
         box.innerHTML = todayEvents.length
             ? todayEvents.map(e => `
                 <div class="calendar-event">
@@ -217,7 +199,6 @@ async function loadCalendarData() {
                     <small>${e.Time}</small>
                 </div>`).join("")
             : "<em>No events for today.</em>";
-
     } catch {
         box.innerHTML = "<small>Schedule unavailable</small>";
     }

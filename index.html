@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus App</title>
 
+    <!-- 🚫 Disable caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,7 +33,6 @@
 
 <main id="content">
 
-    <!-- HOME -->
     <div id="home" class="section active-section">
         <div class="card">
             <h3>Today's Schedule 🗓️</h3>
@@ -40,42 +44,23 @@
             <p id="home-next-bus">Loading...</p>
         </div>
 
-        <div class="card">
-            <h3>Today's Breakfast 🍳</h3>
-            <p id="home-breakfast"></p>
-        </div>
-
-        <div class="card">
-            <h3>Today's Lunch 🍛</h3>
-            <p id="home-lunch"></p>
-        </div>
-
-        <div class="card">
-            <h3>Today's Snacks 🥪</h3>
-            <p id="home-snacks"></p>
-        </div>
-
-        <div class="card">
-            <h3>Today's Dinner 🍲</h3>
-            <p id="home-dinner"></p>
-        </div>
+        <div class="card"><h3>Today's Breakfast 🍳</h3><p id="home-breakfast"></p></div>
+        <div class="card"><h3>Today's Lunch 🍛</h3><p id="home-lunch"></p></div>
+        <div class="card"><h3>Today's Snacks 🥪</h3><p id="home-snacks"></p></div>
+        <div class="card"><h3>Today's Dinner 🍲</h3><p id="home-dinner"></p></div>
     </div>
 
-    <!-- MENUS -->
     <div id="Breakfast" class="section"><h2>Breakfast Menu</h2><div id="list-Breakfast"></div></div>
     <div id="Lunch" class="section"><h2>Lunch Menu</h2><div id="list-Lunch"></div></div>
     <div id="Snacks" class="section"><h2>Snacks Menu</h2><div id="list-Snacks"></div></div>
     <div id="Dinner" class="section"><h2>Dinner Menu</h2><div id="list-Dinner"></div></div>
 
-    <!-- BUS -->
     <div id="bus" class="section">
         <h2>Bus Schedule</h2>
-
         <div class="card">
             <h3>Campus ⮕ Hostel</h3>
             <ul id="bus-campus-hostel" class="bus-list"></ul>
         </div>
-
         <div class="card">
             <h3>Hostel ⮕ Campus</h3>
             <ul id="bus-hostel-campus" class="bus-list"></ul>
@@ -84,6 +69,7 @@
 
 </main>
 
-<script src="script.js"></script>
+<!-- ✅ JS versioned to break cache -->
+<script src="script.js?v=1.0.3"></script>
 </body>
 </html>
