@@ -21,92 +21,118 @@ ICAL_URL = (
 
 # ==========================================================
 # MENU DATA
+# Rule: Main = all food (rice, dal, curry, sabzi, sprouts,
+#               eggs, fruits, BBJ, sweets, drinks like milk etc.)
+#        Sides = only chutney / pickle / salad / lemon /
+#                beverages (Tea, Coffee, Bournvita, Ginger Tea)
 # ==========================================================
+
 breakfast_data = {
-    "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "Day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "Main": [
-        "Uppma & Sheera / Vermicelli Upma",
-        "Poha",
-        "Methi Paratha / Palak Paratha",
-        "Idli Wada",
-        "Poori",
-        "Masala Dosa / Uttapam",
-        "Aloo Gobi Paratha"
+        # Monday
+        "Pongal, Poha Sev, Black Chana Sprouts, Egg Bhurji, Fruits / Cornflakes, BBJ",
+        # Tuesday
+        "Aloo Paratha, Boiled Sweet Corn, Boiled Egg, Fruits / Cornflakes, BBJ",
+        # Wednesday
+        "Upma / Sewaiya Upma, Sheera, Matki Sprouts, Egg Bhurji, Fruits / Cornflakes, BBJ",
+        # Thursday
+        "Idli, Vada, Boiled Groundnut, Boiled Egg, Fruits / Cornflakes, BBJ",
+        # Friday
+        "Masala Dosa, Green Moong Sprouts, Egg Bhurji, Fruits / Cornflakes, BBJ",
+        # Saturday
+        "Methi / Palak Paratha, Veg Korma, Matki Sprouts, Egg Bhurji, Fruits / Cornflakes, BBJ",
+        # Sunday
+        "Methi Poori, Chhole Masala, Green Moong Sprouts, Fruits / Cornflakes, BBJ"
     ],
     "Sides": [
-        "Green Chutney, Boiled Peanuts",
-        "Sev / Namkin Tari, Boiled Sweet Corn",
-        "Veg Korma, Matki Sprouts, Egg Bhurji",
-        "Sambar / Chutney, Chana Sprouts, Boiled Egg",
-        "Aloo Sabji, Green Moong Sprouts",
-        "Sambar / Chutney, Matki Sprouts, Egg Bhurji",
-        "Curd / Pickle, Green Moong Sprouts"
+        "Chutney, Tea / Coffee / Bournvita",           # Monday
+        "Sambar & Chutney, Tea / Coffee / Bournvita",  # Tuesday
+        "Chutney, Tea / Coffee / Bournvita",           # Wednesday
+        "Sambar & Chutney, Tea / Coffee / Bournvita",  # Thursday
+        "Sambar & Chutney, Tea / Coffee / Bournvita",  # Friday
+        "Chutney, Tea / Coffee / Bournvita",           # Saturday
+        "Chutney, Tea / Coffee / Bournvita"            # Sunday
     ]
 }
 
 lunch_data = {
-    "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "Day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "Main": [
-        "Onion Rice, Plain Rice",
-        "Fried Rice / Bagara Rice, Plain Rice",
-        "Curd Rice, Plain Rice",
-        "Puliogre, Plain Rice",
-        "Veg Biryani, Plain Rice",
-        "Curd Rice, Plain Rice",
-        "Paneer Butter Masala (Main)"
+        # Monday
+        "Onion Rice, Plain Rice, Dal Tadka, Jeera Aloo, Chawli Masala, Jaleera, Curd, Papad, Mix Salad",
+        # Tuesday
+        "Aloo 65, Veg Pulav, Plain Rice, Dal Fry, Puri, Lemonade, Papad, Mix Salad",
+        # Wednesday
+        "Curd Rice, Plain Rice, Dal Methi, Paneer Kolhapuri, Butter Milk, Papad, Mix Salad",
+        # Thursday
+        "Puliogare, Plain Rice, Dal Fry, Aloo Brinjal Tomato, Kadhi Pakoda, Lassi, Papad, Mix Salad",
+        # Friday
+        "Veg & Egg Biryani, Plain Rice, Dal Fry, Mix Veg Raitha, Black Chana Masala, Curd, Papad, Mix Salad",
+        # Saturday
+        "Curd Rice, Plain Rice, Dal Palak, Mix Veg Dry, Egg Curry, Hot Badam Milk, Papad, Mix Salad",
+        # Sunday
+        "Dal Palak, Plain Rice, Paneer Butter Masala, Egg Curry, Kadhi Sambhath, Papad, Mix Salad"
     ],
     "Sides": [
-        "Dal Tadka, Rasam, Jeera Aloo, Dal Panchratna",
-        "Dal Fry, Sambhar, Tondli Chana Dry, Manchurian Gravy",
-        "Dal Methi, Rasam, Aloo Brinjal Tomato, Paneer Kolhapuri",
-        "Dal Fry, Sambhar, Black Chana Masala, Soyabean Sabji",
-        "Mix Veg Raitha, Aloo Gobi Dry, Chhole Masala",
-        "Dal Palak, Mix Veg Dry, Egg Curry",
-        "Paneer Butter Masala"
+        "Green Chilli / Lemon",   # Monday
+        "Green Chilli / Lemon",   # Tuesday
+        "Green Chilli / Lemon",   # Wednesday
+        "Green Chilli / Lemon",   # Thursday
+        "Green Chilli / Lemon",   # Friday
+        "Green Chilli / Lemon",   # Saturday
+        "Green Chilli / Lemon"    # Sunday
     ]
 }
 
 snacks_data = {
-    "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "Day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "Main": [
-        "Samosa",
-        "Bread Pakoda / Veg Sandwich",
-        "Veg Hakka Noodles / Maggi",
-        "Vada Pav",
-        "Pav Bhaji",
-        "Masala Bhel",
-        "Veg Cutlet"
+        "Samosa / Dhokla, Fruits",                     # Monday
+        "Pani Puri (9 Pieces), Fruits",                # Tuesday
+        "Veg Noodles, Fruits",                         # Wednesday
+        "Onion / Aloo Pakoda, Fruits",                 # Thursday
+        "Pav Bhaji, Chopped Onion & Lemon, Fruits",    # Friday
+        "Masala Bhel, Fruits",                         # Saturday
+        "Veg Cutlet, Fruits"                           # Sunday
     ],
     "Sides": [
-        "Red & Green Chutney",
-        "Green & Red Chutney",
-        "Tomato Sauce",
-        "Green Chutney",
-        "Chopped Onion & Lemon",
-        "Red/Green Chutney, Onion",
-        "Tomato Sauce / Green Chutney"
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Monday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Tuesday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Wednesday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Thursday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Friday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk",   # Saturday
+        "Red & Green Chutney, BBJ, Ginger Tea / Milk"    # Sunday
     ]
 }
 
 dinner_data = {
-    "Day": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "Day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "Main": [
-        "Khichadi / Bisibele Bath",
-        "Plain Rice",
-        "Jeera Rice",
-        "Tomato Rice",
-        "Onion Masala Rice",
-        "Plain Rice",
-        "Moong Dal Halwa / Badam Poori (Special)"
+        # Monday
+        "Plain Rice, Rasam, Paneer Hyderabadi, Dal Panchratna, Bhindi Sabzi, Chapati / Fulka, Mix Salad",
+        # Tuesday
+        "Plain Rice, Veg Kadai, Channa Dal, Babisha, Ice Cream (Variety of Flavours), Chapati / Fulka, Mix Salad",
+        # Wednesday
+        "Khichadi / Bisibele Bath, Turri Masala, Lauki Kofta Masala, Dal Makhani & Rasam, Shevak Kheer, Chapati / Fulka, Mix Salad",
+        # Thursday
+        "Jeera Rice, Plain Rice, Paneer Butter Masala, Dal Kolhapuri, Aloo Sabji, Mothichoor Ladoo, Chapati / Fulka, Mix Salad",
+        # Friday
+        "Tomato Rice, Plain Rice, Rajma Masala, Dal Tadka, Aloo 65, Gulab Jamun, Chapati / Fulka, Mix Salad",
+        # Saturday
+        "Onion Rice, Plain Rice, Aloo Gobi Mutter, Mushroom Masala, Moong Dal, Ice Cream (Variety of Flavours), Chapati / Fulka, Mix Salad",
+        # Sunday
+        "Jeera Rice, Plain Rice, Aloo Beans, Mushroom Masala, Moong Dal, Jalebi, Chapati / Fulka, Mix Salad"
     ],
     "Sides": [
-        "Bhendi Sabzi, Paneer Hyderabadi, Dal Panchratna",
-        "Veg Kadhai, Channa Dal",
-        "Aloo Sabji, Lauki Kofta Masala, Dal Makhani",
-        "Aloo Sabji, Paneer Butter Masala, Dal Kolhapuri",
-        "Bhendi Sabzi, Rajma Masala, Dal Tadka",
-        "Aloo Beans Fry, Mushroom Masala, Moong Dal",
-        "Moong Dal Halwa / Badam Poori"
+        "Pickle, Green Chilli / Lemon Slice",   # Monday
+        "Pickle, Green Chilli / Lemon Slice",   # Tuesday
+        "Pickle, Green Chilli / Lemon Slice",   # Wednesday
+        "Pickle, Green Chilli / Lemon Slice",   # Thursday
+        "Pickle, Green Chilli / Lemon Slice",   # Friday
+        "Pickle, Green Chilli / Lemon Slice",   # Saturday
+        "Pickle, Green Chilli / Lemon Slice"    # Sunday
     ]
 }
 
@@ -147,12 +173,12 @@ bus_data = {
 }
 
 # ==========================================================
-# MEAL TIMES (FINAL LOGIC)
+# MEAL TIMES (from board image)
 # ==========================================================
 meal_times_data = {
     "Day": [
         "Default","Default","Default","Default",  # Normal days
-        "Sunday"                                 # Sunday / Govt holiday
+        "Sunday"                                   # Sunday / Govt holiday
     ],
     "Type": [
         "Breakfast","Lunch","Snacks","Dinner",
